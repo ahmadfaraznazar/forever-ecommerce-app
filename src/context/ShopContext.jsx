@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 // import PropTypes from "prop-types";
 // import { toast } from "react-toastify";
 // import axios from "axios";
@@ -17,8 +17,8 @@ const ShopContextProvider = (props) => {
   //   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   //   // for searching state
-  //   const [search, setSearch] = useState("");
-  //   const [showSearch, setShowSearch] = useState(false);
+  const [search, setSearch] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
 
   //   // for products state
   //   const [cartItems, setCartItems] = useState({});
@@ -166,10 +166,10 @@ const ShopContextProvider = (props) => {
     products,
     currency,
     delivery_fee,
-    // search,
-    // setSearch,
-    // showSearch,
-    // setShowSearch,
+    search,
+    setSearch,
+    showSearch,
+    setShowSearch,
     // cartItems,
     // addToCart,
     // setCartItems,
