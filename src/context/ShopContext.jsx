@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 // import PropTypes from "prop-types";
-// import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 // import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 
@@ -21,65 +21,64 @@ const ShopContextProvider = (props) => {
   const [showSearch, setShowSearch] = useState(false);
 
   //   // for products state
-  //   const [cartItems, setCartItems] = useState({});
+  const [cartItems, setCartItems] = useState({});
 
   //   const [products, setProducts] = useState([]);
   //   const [token, setToken] = useState("");
 
   //   const navigate = useNavigate();
 
-  //   const addToCart = async (itemId, size) => {
-  //     if (!size) {
-  //       toast.error("Please select a size");
-  //       return;
-  //     }
+  const addToCart = async (itemId, size) => {
+    if (!size) {
+      toast.error('Please select a size');
+      return;
+    }
 
-  //     let cartData = structuredClone(cartItems);
-  //     // check if the item already exists in the cart
-  //     // if it does, increment the quantity
-  //     if (cartData[itemId]) {
-  //       if (cartData[itemId][size]) {
-  //         cartData[itemId][size] += 1;
-  //       } else {
-  //         cartData[itemId][size] = 1;
-  //       }
-  //     } else {
-  //       cartData[itemId] = {};
-  //       cartData[itemId][size] = 1;
-  //     }
-  //     setCartItems(cartData);
+    let cartData = structuredClone(cartItems);
+    // check if the item already exists in the cart
+    // if it does, increment the quantity
+    if (cartData[itemId]) {
+      if (cartData[itemId][size]) {
+        cartData[itemId][size] += 1;
+      } else {
+        cartData[itemId][size] = 1;
+      }
+    } else {
+      cartData[itemId] = {};
+      cartData[itemId][size] = 1;
+    }
+    setCartItems(cartData);
 
-  //     if (token) {
-  //       try {
-  //         await axios.post(
-  //           backendUrl + "/api/cart/add",
-  //           { itemId, size },
-  //           { headers: { token } }
-  //         );
-  //       } catch (error) {
-  //         console.log(error);
-  //         toast.error(error.message);
-  //       }
-  //     }
-
-  //   };
+    //     if (token) {
+    //       try {
+    //         await axios.post(
+    //           backendUrl + "/api/cart/add",
+    //           { itemId, size },
+    //           { headers: { token } }
+    //         );
+    //       } catch (error) {
+    //         console.log(error);
+    //         toast.error(error.message);
+    //       }
+    //     }
+  };
 
   //   // add to card counter
-  //   const getCartCount = () => {
-  //     let totalCount = 0;
-  //     for (const items in cartItems) {
-  //       for (const item in cartItems[items]) {
-  //         try {
-  //           if (cartItems[items][item] > 0) {
-  //             totalCount += cartItems[items][item];
-  //           }
-  //         } catch (error) {
-  //           console.error("Error calculating cart count:", error);
-  //         }
-  //       }
-  //     }
-  //     return totalCount;
-  //   };
+  const getCartCount = () => {
+    let totalCount = 0;
+    for (const items in cartItems) {
+      for (const item in cartItems[items]) {
+        try {
+          if (cartItems[items][item] > 0) {
+            totalCount += cartItems[items][item];
+          }
+        } catch (error) {
+          console.error('Error calculating cart count:', error);
+        }
+      }
+    }
+    return totalCount;
+  };
 
   //   // update quantity of the cart item
   //   const updateQuantity = async (itemId, size, quantity) => {
@@ -170,10 +169,10 @@ const ShopContextProvider = (props) => {
     setSearch,
     showSearch,
     setShowSearch,
-    // cartItems,
-    // addToCart,
-    // setCartItems,
-    // getCartCount,
+    cartItems,
+    addToCart,
+    setCartItems,
+    getCartCount,
     // updateQuantity,
     // getCartAmount,
     // navigate,
