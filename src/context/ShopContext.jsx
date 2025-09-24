@@ -2,7 +2,7 @@ import { createContext, useState } from 'react';
 // import PropTypes from "prop-types";
 import { toast } from 'react-toastify';
 // import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import { products } from '../assets/assets';
 
@@ -26,7 +26,7 @@ const ShopContextProvider = (props) => {
   //   const [products, setProducts] = useState([]);
   //   const [token, setToken] = useState("");
 
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const addToCart = async (itemId, size) => {
     if (!size) {
@@ -81,41 +81,41 @@ const ShopContextProvider = (props) => {
   };
 
   //   // update quantity of the cart item
-  //   const updateQuantity = async (itemId, size, quantity) => {
-  //     let cartData = structuredClone(cartItems);
+  const updateQuantity = async (itemId, size, quantity) => {
+    let cartData = structuredClone(cartItems);
 
-  //     cartData[itemId][size] = quantity;
+    cartData[itemId][size] = quantity;
 
-  //     setCartItems(cartData);
+    setCartItems(cartData);
 
-  //     if (token) {
-  //       try {
-  //           await axios.post(backendUrl + '/api/cart/update' , { itemId, size, quantity},{ headers: { token }});
-  //       } catch (error) {
-  //         console.log(error);
-  //         toast.error(error.message);
-  //       }
-  //     }
-  // };
+    // if (token) {
+    //   try {
+    //       await axios.post(backendUrl + '/api/cart/update' , { itemId, size, quantity},{ headers: { token }});
+    //   } catch (error) {
+    //     console.log(error);
+    //     toast.error(error.message);
+    //   }
+    // }
+  };
 
-  // const getCartAmount = () => {
-  //   let totalAmount = 0;
-  //   for (const itemId in cartItems) {
-  //     const itemInfo = products.find((product) => product._id === itemId);
-  //     if (!itemInfo) continue; // ⚠️ যদি itemInfo না পাওয়া যায়, তাহলে skip
-  //     for (const size in cartItems[itemId]) {
-  //       try {
-  //         const quantity = cartItems[itemId][size];
-  //         if (quantity > 0) {
-  //           totalAmount += itemInfo.price * quantity;
-  //         }
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //   }
-  //   return totalAmount;
-  // };
+  const getCartAmount = () => {
+    let totalAmount = 0;
+    for (const itemId in cartItems) {
+      const itemInfo = products.find((product) => product._id === itemId);
+      if (!itemInfo) continue; // ⚠️ যদি itemInfo না পাওয়া যায়, তাহলে skip
+      for (const size in cartItems[itemId]) {
+        try {
+          const quantity = cartItems[itemId][size];
+          if (quantity > 0) {
+            totalAmount += itemInfo.price * quantity;
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+    return totalAmount;
+  };
 
   //   // Fetch products data from the backend
   //   const getProductsData = async () => {
@@ -173,9 +173,9 @@ const ShopContextProvider = (props) => {
     addToCart,
     setCartItems,
     getCartCount,
-    // updateQuantity,
-    // getCartAmount,
-    // navigate,
+    updateQuantity,
+    getCartAmount,
+    navigate,
     // backendUrl,
     // setToken,
     // token,
