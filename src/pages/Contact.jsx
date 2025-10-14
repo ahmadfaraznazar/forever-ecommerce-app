@@ -14,8 +14,8 @@ const Contact = () => {
         <div className="flex flex-col justify-center items-start gap-6">
           <p className="font-semibold text-xl">Our Store</p>
           <p className="text-gray-500">
-            Sector 10, Uttara Model Town <br />
-            Dhaka-1230
+            Garden Town <br />
+            Lahore
           </p>
           <p className="text-gray-500">
             Tel: +8804875465 <br />

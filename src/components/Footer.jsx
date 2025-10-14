@@ -33,10 +33,7 @@ const Footer = () => {
 
       <div>
         <hr />
-        <p className="py-5 text-sm text-center">
-          Copyright 2024-2025 @ forever.com - All Right Reserved Design by{' '}
-          <a href="https://www.linkedin.com/in/pranto-kumar-113015/">Pranto Kumar</a>
-        </p>
+        <p className="py-5 text-sm text-center">Programmed by Ahmad Nazar</p>
       </div>
     </div>
   );
