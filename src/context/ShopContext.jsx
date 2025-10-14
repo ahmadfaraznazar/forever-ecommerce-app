@@ -98,7 +98,7 @@ const ShopContextProvider = (props) => {
     let totalAmount = 0;
     for (const itemId in cartItems) {
       const itemInfo = products.find((product) => product._id === itemId);
-      if (!itemInfo) continue; // ⚠️ যদি itemInfo না পাওয়া যায়, তাহলে skip
+      if (!itemInfo) continue; //
       for (const size in cartItems[itemId]) {
         try {
           const quantity = cartItems[itemId][size];
@@ -116,7 +116,7 @@ const ShopContextProvider = (props) => {
   // Fetch products data from the backend
   const getProductsData = async () => {
     try {
-      const response = await axios.get(backendUrl + '/api/product/list');
+      const response = await axios.get(backendUrl + 'api/product/list');
 
       if (response.data.success) {
         setProducts(response.data.products);
